@@ -1,14 +1,14 @@
-import type { ComponentPropsWithoutRef, ElementType } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 type ButtonProps<C extends ElementType = "button"> = {
   as?: C;
-  label: string;
+  children: ReactNode;
   variant?: "primary" | "secondary";
-} & Omit<ComponentPropsWithoutRef<C>, "as" | "label">;
+} & Omit<ComponentPropsWithoutRef<C>, "as" | "children">;
 
 export default function Button<C extends ElementType = "button">({
   as,
-  label,
+  children,
   variant = "primary",
   className,
   ...rest
@@ -19,7 +19,7 @@ export default function Button<C extends ElementType = "button">({
 
   return (
     <Component {...typeDefault} className={classes} {...rest}>
-      {label}
+      {children}
     </Component>
   );
 }
